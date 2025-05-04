@@ -12,6 +12,15 @@ jobs:
       packages: write
 
     steps:
+      - name: Delete SNAPSHOT packages
+        uses: Savrov/action-version-cleaner@v1.0.0
+        with:
+          github-repository: ${{ github.repository }}
+          package-type: maven
+          version-tag: 1.0.0
+          is-version-tag-strict: true
+          github-token: ${{ secrets.PAT }}
+
       - name: Checkout source
         uses: actions/checkout@v4
 
